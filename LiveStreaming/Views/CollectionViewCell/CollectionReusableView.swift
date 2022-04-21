@@ -22,7 +22,7 @@ class HeaderCollectionReusableView: UICollectionReusableView {
      var nicknameLabel: UILabel = {
         let label = UILabel()
         label.text = ""
-        label.textColor = UIColor.black
+//         label.textColor = .systemBackground
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
