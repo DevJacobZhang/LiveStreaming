@@ -23,7 +23,6 @@ class LoginViewController: UIViewController {
         
         headPhotoImageView.layer.cornerRadius = headPhotoImageView.frame.height / 2
         headPhotoImageView.layer.masksToBounds = true
-//        headPhotoImageView.contentMode = .scaleToFill
         
         logoutButton.layer.cornerRadius = 20
         logoutButton.layer.masksToBounds = true
@@ -56,25 +55,25 @@ class LoginViewController: UIViewController {
                 DispatchQueue.main.async {
                     self.nicknameLabel.text = "暱稱：\(result?.nickname ?? "empty")"
                     self.headPhotoImageView.image = result?.image
-
                 }
             }
         }
-        
     }
     
     @IBAction func logOutAction(_ sender: Any) {
                 /*登出會員*/
         if APICaller.shared.mainAuth.currentUser != nil {
-            do {
-                try APICaller.shared.mainAuth.signOut()
-                APICaller.shared.statusForReload = true
-
-                self.navigationController?.viewDidLoad()
-                
-                UserDefaults.standard.removeObject(forKey: MyuserKey.nickname.rawValue)
-            } catch let error as NSError {
-                print(error.localizedDescription)
+            APICaller.shared.currentUserSignOut { succeed, error in
+                if !succeed {
+                    print(error?.localizedDescription ?? "something error")
+                    return
+                } else {
+                    DispatchQueue.main.async {
+                        APICaller.shared.statusForReload = true
+                        self.navigationController?.viewDidLoad()
+                        UserDefaults.standard.removeObject(forKey: MyuserKey.nickname.rawValue)
+                    }
+                }
             }
         }
     }

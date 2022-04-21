@@ -8,18 +8,14 @@
 import UIKit
 
 
-
-class ChatRoomViewController: UIViewController, UITextFieldDelegate, CustomAlertViewDelegate {
+class ChatRoomViewController: UIViewController, CustomAlertViewDelegate {
 
     
-
-    private var webSocket: URLSessionWebSocketTask?
-
     private var keyboardStatus: Bool = false
     
     private var messageAllAry = [String]()
-    @IBOutlet weak var heartButton: UIButton!
     
+    @IBOutlet weak var heartButton: UIButton!
     @IBOutlet weak var messageTextField: UITextField!
     @IBOutlet weak var sendMsgButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
@@ -39,25 +35,10 @@ class ChatRoomViewController: UIViewController, UITextFieldDelegate, CustomAlert
         return button
     }()
     
-    
     let logoutAlertView: CustomAlertView = {
         let view = CustomAlertView()
         return view
     }()
-    
-    let textLabel: UILabel = {
-        let label = UILabel()
-        label.backgroundColor = UIColor.black
-        label.alpha = 0.7
-        label.textColor = UIColor.white
-        label.textAlignment = .left
-        label.layer.cornerRadius = 10
-        label.layer.masksToBounds = true
-        label.numberOfLines = 0
-        label.text = "first error"
-        return label
-    }()
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -79,8 +60,6 @@ class ChatRoomViewController: UIViewController, UITextFieldDelegate, CustomAlert
         self.streamView.addSubview(self.tableView)
         
         self.streamView.addSubview(self.messageTextField)
-        messageTextField.delegate = self
-        
         self.streamView.addSubview(self.sendMsgButton)
         self.streamView.addSubview(self.heartButton)
         
@@ -103,8 +82,6 @@ class ChatRoomViewController: UIViewController, UITextFieldDelegate, CustomAlert
             
         })
         /*------------------------------// end webSocket//-----------------------------------*/
-            
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -123,9 +100,7 @@ class ChatRoomViewController: UIViewController, UITextFieldDelegate, CustomAlert
         
         streamView.playRemove()
         streamView.removeFromSuperview()
-        
     }
-    
     
     func configureButtonFrame() {
         //設定button的位子，以螢幕寬高來動態調節
@@ -143,23 +118,8 @@ class ChatRoomViewController: UIViewController, UITextFieldDelegate, CustomAlert
         self.messageTextField.alpha = 0.7
         
         
-        // 依據textfield的位子 動態調整sendButton在右方剩餘空間當中處於置中位子
-        let sendButtonWidth = self.messageTextField.frame.size.height
-    
-        let remainingSpace = self.view.frame.width - (self.messageTextField.frame.origin.x + self.messageTextField.frame.size.width)//剩餘空間
-        
-        let sendButtonOffsetX = self.messageTextField.frame.origin.x + self.messageTextField.frame.size.width + remainingSpace / 2
-        
-        let center = CGPoint(x:sendButtonOffsetX, y: self.messageTextField.bounds.size.height / 2 + self.messageTextField.frame.origin.y)
-        self.sendMsgButton.center = center
-        
-        self.sendMsgButton.frame.size = CGSize(width: sendButtonWidth, height: sendButtonWidth)//textfield多高，按鈕的寬高就等於多少
-        
         self.sendMsgButton.layer.cornerRadius = self.sendMsgButton.frame.width / 2
         self.sendMsgButton.layer.masksToBounds = true
-        
-        
-       
     }
     
     @objc func logoutAction() {
@@ -256,7 +216,6 @@ extension ChatRoomViewController: UITableViewDelegate, UITableViewDataSource {
         let index = messageAllAry.count - 1 - indexPath.row
         cell.configure(msgText: messageAllAry[index])
         
-    
         return cell
     }
     
@@ -270,7 +229,7 @@ extension ChatRoomViewController: UITableViewDelegate, UITableViewDataSource {
 extension ChatRoomViewController: ChatPersistenceManagerDelegate {
     func getMessageFromServer(message: String?, error: Error?) {
         if error != nil {
-            print(error?.localizedDescription)
+            print(error?.localizedDescription ?? "接收到訊息但無法解析正確")
             return
         }
         getInfoMsgStringFromServer(jsonString: message!)
@@ -336,8 +295,6 @@ extension ChatRoomViewController {
            self.messageTextField.frame.origin.y -= keyboardHeight
            self.sendMsgButton.frame.origin.y -= keyboardHeight
            self.heartButton.frame.origin.y -= keyboardHeight
-       } else {
-//           self.tableView.frame.origin.y = -view.frame.height / 3
        }
    }
    

@@ -125,6 +125,7 @@
 				4B92302B28067E26003FBC18 /* CollectionViewCell */,
 				4B922FF42803DAF1003FBC18 /* StreamView.swift */,
 				4B923025280567E0003FBC18 /* CustomAlertView.swift */,
+				4B561D182808303C00932A3D /* ChatLabelTableViewCell.xib */,
 				4B92302C28067E60003FBC18 /* ChatLabelTableViewCell.swift */,
 			);
 			path = Views;
@@ -136,7 +137,6 @@
 				4BFDDACC27F33AC900771864 /* AppDelegate.swift */,
 				4BFDDACE27F33AC900771864 /* SceneDelegate.swift */,
 				4BFDDAD227F33AC900771864 /* Main.storyboard */,
-				4B561D182808303C00932A3D /* ChatLabelTableViewCell.xib */,
 				4BFDDADA27F33ACA00771864 /* LaunchScreen.storyboard */,
 			);
 			path = Resources;

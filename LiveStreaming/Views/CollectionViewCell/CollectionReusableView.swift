@@ -38,6 +38,8 @@ class HeaderCollectionReusableView: UICollectionReusableView {
     override func layoutSubviews() {
         super.layoutSubviews()
         self.headPhotoImageView.frame = CGRect(x: 10.0, y: 0, width: 30.0, height: 30.0)
+        self.headPhotoImageView.layer.cornerRadius = self.headPhotoImageView.frame.width / 2
+        self.headPhotoImageView.layer.masksToBounds = true
         setConstraints()
         
     }
@@ -52,8 +54,12 @@ class HeaderCollectionReusableView: UICollectionReusableView {
         NSLayoutConstraint.activate(nicknameLabelConstraint)
     }
     
-    func configure(withText: String) {
+    func configure(withText: String, withImage: UIImage?) {
         self.nicknameLabel.text = withText
+        if withImage != nil {
+            self.headPhotoImageView.image = withImage
+
+        }
     }
     
     func configureSearchResult(withTitle: String) {

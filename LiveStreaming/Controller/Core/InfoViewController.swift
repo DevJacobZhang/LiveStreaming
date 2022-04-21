@@ -37,7 +37,6 @@ class InfoViewController: UIViewController {
         let ActivityIndicator = UIActivityIndicatorView(style: .large)
         ActivityIndicator.center = .zero
         ActivityIndicator.backgroundColor = UIColor.black
-//        ActivityIndicator.tintColor = UIColor.white
         ActivityIndicator.alpha = 0.8
         ActivityIndicator.layer.cornerRadius = 10
         ActivityIndicator.layer.masksToBounds = true
@@ -267,7 +266,6 @@ class InfoViewController: UIViewController {
         }
         buttonStatus = status
     }
-    
     
     //MARK: - TextField , Keyboard Action -> #4
     

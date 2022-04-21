@@ -196,23 +196,21 @@ class SignUpViewController: UIViewController, APICallerDelegateOfCreate {
                 })
         
     }
+    
     func cameraGo() {
         print("Camera")
         self.imagePickerController.sourceType = .camera
         self.imagePickerController.allowsEditing = true
         present(self.imagePickerController, animated: true)
     }
+    
     func albumLibaryGo() {
         print("photoLibary")
         
         self.imagePickerController.sourceType = .photoLibrary
         self.imagePickerController.allowsEditing = false
         self.present(self.imagePickerController, animated: true)
-        
-        
     }
-    
-    
     
     //MARK: - APICaller.Delegate Func Here
     

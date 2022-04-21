@@ -13,7 +13,6 @@ class MainTabBarController: UITabBarController {
         super.viewDidLoad()
         let vc1 = UINavigationController(rootViewController: (self.storyboard?.instantiateViewController(withIdentifier: "ViewController"))!)
         let vc2 = UINavigationController(rootViewController: (self.storyboard?.instantiateViewController(withIdentifier: "SearchViewController"))!)
-//        let vc3 = UINavigationController(rootViewController: (self.storyboard?.instantiateViewController(withIdentifier: "InfoViewController"))!)
         let vc3 = self.storyboard?.instantiateViewController(withIdentifier: "SelectorNavigationController")
         
         vc1.tabBarItem.title = "首頁"
@@ -23,9 +22,7 @@ class MainTabBarController: UITabBarController {
         vc1.tabBarItem.image = UIImage(named: "tabHome")
         vc2.tabBarItem.image = UIImage(named: "tabSearch")
         vc3?.tabBarItem.image = UIImage(named: "tabPersonal")
-        
-        
-        
+           
         self.setViewControllers([vc1,vc2,vc3!], animated: false)
 
     }

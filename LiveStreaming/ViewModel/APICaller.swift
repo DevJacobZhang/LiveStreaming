@@ -17,7 +17,6 @@ enum CurrentUserError: Error{
     case UserNotFound
 }
 
-
 struct Constants {
 //    static let baseURL = Bundle.main.url(forResource: "myTestJsonFile", withExtension: "json")
     static let path = Bundle.main.path(forResource: "myTestJsonFile", ofType: "json")
@@ -56,7 +55,6 @@ class APICaller {
         } catch {
             print("data try error")
         }
-        
     }
     //首頁
     func getLiveStreamOfStreamlist(completionHandler: @escaping ([LiveStreamModel])-> Void) {
@@ -106,7 +104,6 @@ class APICaller {
                     
                     let imageData = otherInfo?.image!.jpegData(compressionQuality: 0.5)//轉成data格式
                     let path = "images/\(UUID().uuidString).jpg"//生成到時候取得照片的路徑名稱
-                    UserDefaults.standard.set(path, forKey: "userImage")
                     let fileRef = storage.child(path) //以path的名稱到 storage的儲存空間儲存這張照片，名稱就是path
 
                     fileRef.putData(imageData!, metadata: nil) { metadata, error in
@@ -136,9 +133,26 @@ class APICaller {
                     }
                 }
             }// if error == nil && result != nil end
+            DispatchQueue.main.async {
+                do {
+                    try self.mainAuth.signOut()//firebase在註冊後會自動登入！所以註冊完後登出。
+
+                } catch {
+                    print("error logout")
+                }
+            }
         }// Auth.auth().createUser end
     }//func end
    
+    func currentUserSignOut(completion: @escaping(Bool,Error?) -> Void) {
+        
+        do {
+            try self.mainAuth.signOut()
+            completion(true, nil)
+        } catch {
+            completion(false,error)
+        }
+    }
     
     //取得使用者資訊
     func getCurrentUserInfo(completionHandler:@escaping (FirebaseDBInfo?, Error?) -> Void) {
@@ -208,20 +222,3 @@ class APICaller {
     }
     
 }
-
-/*
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
- func quicklyGetImage(imageUrl: String, completion: @escaping(UIImage?) -> Void) {
-     let storageRef = Storage.storage().reference()
-     let fileRef = storageRef.child(imageUrl)
-     fileRef.getData(maxSize: 5 * 1024 * 1024) { data, error in
-         if data != nil && error == nil {
-             let image = UIImage(data: data!)
-             completion(image)
-         } else {
-             completion(nil)
-         }
-     }
- }
-*/

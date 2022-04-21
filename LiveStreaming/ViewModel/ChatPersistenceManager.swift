@@ -59,14 +59,12 @@ final class ChatPersistenceManager: NSObject {
                 case .data(let data):
                     print("got data : \(data)")
                 case .string(let str):
-                    print("got string: \(str)")
                     self?.delegate?.getMessageFromServer(message: str, error: nil)
                     
                 @unknown default:
                     break
                 }
             case .failure(let error):
-                print("got error:\(error)")
                 self?.delegate?.getMessageFromServer(message: nil, error: error)
             }
             self?.receive()

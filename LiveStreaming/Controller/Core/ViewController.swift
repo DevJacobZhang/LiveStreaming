@@ -105,11 +105,21 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
                 withReuseIdentifier: HeaderCollectionReusableView.identifier,
                 for: indexPath) as! HeaderCollectionReusableView
             
+            APICaller.shared.getCurrentUserInfo { result, error in
+                if result != nil && error == nil {
+                    DispatchQueue.main.async {
+                        headerView.configure(withText: result?.nickname ?? "empty", withImage: result?.image)
+
+                    }
+                }
+            }
+            /*
             if let str = UserDefaults.standard.object(forKey: MyuserKey.nickname.rawValue) as? String {
+                
                 headerView.configure(withText: str)
             } else {
                 headerView.configure(withText: "")
-            }
+            }*/
             
             return headerView
         } else {
@@ -121,7 +131,6 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
 
         var size = CGSize()
-
         if UserDefaults.standard.object(forKey: MyuserKey.nickname.rawValue) != nil {
             size = CGSize(width: self.view.bounds.width, height: 50)
 
