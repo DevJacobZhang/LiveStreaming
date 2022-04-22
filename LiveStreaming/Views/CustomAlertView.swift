@@ -40,6 +40,7 @@ class CustomAlertView: UIView {
     let label: UILabel = {
         let lb = UILabel()
         lb.textAlignment = .center
+        lb.textColor = .black
         lb.text = "確定離開此聊天室？"
         return lb
     }()

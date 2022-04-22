@@ -33,13 +33,14 @@ class HeaderCollectionReusableView: UICollectionReusableView {
         self.addSubview(nicknameLabel)
         self.headPhotoImageView.layer.cornerRadius = self.headPhotoImageView.bounds.width / 2
         self.headPhotoImageView.layer.masksToBounds = true
+        self.headPhotoImageView.layer.cornerRadius = self.headPhotoImageView.frame.width / 2
+        self.headPhotoImageView.layer.masksToBounds = true
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
         self.headPhotoImageView.frame = CGRect(x: 10.0, y: 0, width: 30.0, height: 30.0)
-        self.headPhotoImageView.layer.cornerRadius = self.headPhotoImageView.frame.width / 2
-        self.headPhotoImageView.layer.masksToBounds = true
+        
         setConstraints()
         
     }

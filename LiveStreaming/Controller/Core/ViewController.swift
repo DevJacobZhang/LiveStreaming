@@ -113,19 +113,10 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
                     }
                 }
             }
-            /*
-            if let str = UserDefaults.standard.object(forKey: MyuserKey.nickname.rawValue) as? String {
-                
-                headerView.configure(withText: str)
-            } else {
-                headerView.configure(withText: "")
-            }*/
-            
             return headerView
         } else {
             return UICollectionReusableView()
         }
-        
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {

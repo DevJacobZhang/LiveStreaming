@@ -99,7 +99,6 @@ class APICaller {
                 let storage = Storage.storage().reference() //開啟storage儲存照片的地方
 
                 if otherInfo?.image != nil { //使用者有設定要當作大頭貼的照片
-
                     //有大頭貼要儲存到storage，所以要生成url存到ＤＢ以及nickname,account
                     
                     let imageData = otherInfo?.image!.jpegData(compressionQuality: 0.5)//轉成data格式
@@ -129,7 +128,6 @@ class APICaller {
                         
                         let db = Firestore.firestore()
                         db.collection(userAccount).document().setData(["nickname":nickname,"account":account])
-
                     }
                 }
             }// if error == nil && result != nil end
@@ -156,11 +154,8 @@ class APICaller {
     
     //取得使用者資訊
     func getCurrentUserInfo(completionHandler:@escaping (FirebaseDBInfo?, Error?) -> Void) {
-        guard let user = mainAuth.currentUser else {
-            completionHandler(nil,CurrentUserError.UserNotFound)
-            return
-        }
-        guard let strOfEmail = user.email else {
+        
+        guard let strOfEmail = mainAuth.currentUser?.email else {
             completionHandler(nil,CurrentUserError.UserNotFound)
             return
         }
@@ -182,32 +177,26 @@ class APICaller {
         let db = Firestore.firestore()
         db.collection(userAccount).getDocuments { snapshot, error in
             if error == nil && snapshot != nil {
-                var paths = [String]()
-                
-                for doc in snapshot!.documents {
-                    paths.append(doc["url"] as! String)
-                    userInfo.nickname = doc["nickname"] as? String
-                    
+                var path = ""
+                for resu in snapshot!.documents {
+                    path = resu["url"] as! String
+                    userInfo.nickname = resu["nickname"] as? String
                 }
-                
-                for path in paths { //這裡是儲存image的照片路徑名稱，取得名稱之後再利用迴圈去storage找出照片（基本上只有一個，所以迴圈應該只跑一次？？？）
+ 
+                let storageRef = Storage.storage().reference()
+                let fileRef = storageRef.child(path) //這裏path應該是在firebase網頁裡面storage的image/uuid.jpg，然後把這一串弄到storage裡面找
                     
-                    let storageRef = Storage.storage().reference()
-                    let fileRef = storageRef.child(path) //這裏path應該是在firebase網頁裡面storage的image/uuid.jpg，然後把這一串弄到storage裡面找
-                    
-                    fileRef.getData(maxSize: 5 * 1024 * 1024) { data, error in //限制大小是5MB
+                fileRef.getData(maxSize: 5 * 1024 * 1024) { data, error in //限制大小是5MB
                         
-                        if error == nil && data != nil {
-                            let image = UIImage(data: data!)
-                            userInfo.image = image
-                            completionHandler(userInfo, nil)
+                    if error == nil && data != nil {
+                        let image = UIImage(data: data!)
+                        userInfo.image = image
+                        completionHandler(userInfo, nil)
                             
-                        }
-                    } //fileRef.getData(maxSize: 5 * 1024 * 1024)
-                } //for path in paths
+                    }
+                } //fileRef.getData(maxSize: 5 * 1024 * 1024)
             }//if error == nil && snapshot != nil
         }//db.collection(userAccount).getDocuments
-        
     }//func end
     
     //登入帳號密碼返回成功或失敗
