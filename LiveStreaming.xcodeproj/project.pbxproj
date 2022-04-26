@@ -47,6 +47,7 @@
 		62197B1B2817A58F00BE74BD /* FollowsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62197B1A2817A58F00BE74BD /* FollowsViewController.swift */; };
 		62197B1D2817AA5900BE74BD /* FollowsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62197B1C2817AA5900BE74BD /* FollowsTableViewCell.swift */; };
 		62197B1F2817BEBC00BE74BD /* StreamTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62197B1E2817BEBC00BE74BD /* StreamTitleView.swift */; };
+		62941A262817DA240073E755 /* FollowPersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62941A252817DA240073E755 /* FollowPersistenceManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -94,6 +95,7 @@
 		62197B1A2817A58F00BE74BD /* FollowsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowsViewController.swift; sourceTree = "<group>"; };
 		62197B1C2817AA5900BE74BD /* FollowsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowsTableViewCell.swift; sourceTree = "<group>"; };
 		62197B1E2817BEBC00BE74BD /* StreamTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamTitleView.swift; sourceTree = "<group>"; };
+		62941A252817DA240073E755 /* FollowPersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowPersistenceManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -168,6 +170,7 @@
 			children = (
 				4B281FCB27F83DC9007183FC /* APICaller.swift */,
 				4B9230232805326E003FBC18 /* ChatPersistenceManager.swift */,
+				62941A252817DA240073E755 /* FollowPersistenceManager.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -335,6 +338,7 @@
 				4BFDDB2E27F4A78000771864 /* InfoViewController.swift in Sources */,
 				4BFDDAD127F33AC900771864 /* ViewController.swift in Sources */,
 				62197B1B2817A58F00BE74BD /* FollowsViewController.swift in Sources */,
+				62941A262817DA240073E755 /* FollowPersistenceManager.swift in Sources */,
 				4B281FC327F80C63007183FC /* MyCollectionView.swift in Sources */,
 				4BFDDB3127F5615B00771864 /* LiveStreamModel.swift in Sources */,
 				4B92302D28067E60003FBC18 /* ChatLabelTableViewCell.swift in Sources */,

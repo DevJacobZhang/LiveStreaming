@@ -90,10 +90,8 @@ extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSo
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let vc = self.storyboard!.instantiateViewController(withIdentifier: "ChatRoomViewController") as? ChatRoomViewController else {return}
-        let user = self.liveStreamModel[indexPath.row].nickname ?? "無名稱"
-        let title = self.liveStreamModel[indexPath.row].stream_title ?? "無標題"
-        let photoUrl = self.liveStreamModel[indexPath.row].head_photo
-        vc.configure(photoUrlStr: photoUrl, user: user, title: title)
+
+        vc.configure(liveStreamModel: self.liveStreamModel[indexPath.row])
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -160,10 +158,8 @@ extension SearchViewController: UISearchResultsUpdating, SearchResultsViewContro
         print("get searchResult.delegate")
         DispatchQueue.main.async {
             guard let vc = self.storyboard!.instantiateViewController(withIdentifier: "ChatRoomViewController") as? ChatRoomViewController else {return}
-            let user = liveStreamModel.nickname ?? "無名稱"
-            let title = liveStreamModel.stream_title ?? "無標題"
-            let photoUrl = liveStreamModel.head_photo
-            vc.configure(photoUrlStr: photoUrl, user: user, title: title)
+
+            vc.configure(liveStreamModel: liveStreamModel)
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }

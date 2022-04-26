@@ -195,8 +195,10 @@ class ChatRoomViewController: UIViewController, CustomAlertViewDelegate {
     
     //MARK: - 配置左上角大標題的內容
     
-    public func configure(photoUrlStr: String?, user: String, title: String?) {
-        self.streamTitleView.configure(photoUrlStr:photoUrlStr ,user: user, title: title)
+    public func configure(liveStreamModel: LiveStreamModel?) {
+        if liveStreamModel != nil {
+            self.streamTitleView.configure(liveStreamModel: liveStreamModel!)
+        }
     }
     
     //MARK: - 聊天室淡出效果

@@ -10,6 +10,8 @@ import SwiftUI
 
 class StreamTitleView: UIView {
     
+    private var liveStreamModel: LiveStreamModel?
+    
     private let headPhotoImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "paopao")
@@ -53,7 +55,20 @@ class StreamTitleView: UIView {
         self.addSubview(usernameLabel)
         self.addSubview(streamTitle)
         self.addSubview(followButton)
-
+        followButton.addTarget(self, action: #selector(followAction), for: .touchUpInside)
+    }
+    
+    @objc func followAction() {
+        
+        DataPersistenceManager.shard.followTitleWith(model: self.liveStreamModel!) { result in
+            switch result {
+            case .success():
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "Follow"), object: nil)
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+        
     }
     
     required init?(coder: NSCoder) {
@@ -77,14 +92,29 @@ class StreamTitleView: UIView {
         
     }
     
-    public func configure(photoUrlStr: String?, user: String, title: String?) {
+    public func configure(liveStreamModel: LiveStreamModel?) {
+        if liveStreamModel != nil {
+            self.liveStreamModel = liveStreamModel!
+            let user = liveStreamModel?.nickname ?? "無名稱"
+            let title = liveStreamModel?.stream_title ?? "無標題"
+            let photoUrl = liveStreamModel?.head_photo
+            self.configure(photoUrlStr: photoUrl, user: user, title: title)
+        }
+    }
+    
+    private func configure(photoUrlStr: String?, user: String, title: String?) {
         if photoUrlStr != nil {
             let url = URL(string: photoUrlStr!)
-            guard let data = try? Data(contentsOf: url!) else {return}
-            let image = UIImage(data: data)
-            DispatchQueue.main.async {
-                self.headPhotoImageView.image = image
+            let data = try? Data(contentsOf: url!)
+            if data != nil {
+                let image = UIImage(data: data!)
+                if image != nil {
+                    DispatchQueue.main.async {
+                        self.headPhotoImageView.image = image
+                    }
+                }
             }
+            
         }
         self.usernameLabel.text = user
         if title != nil {

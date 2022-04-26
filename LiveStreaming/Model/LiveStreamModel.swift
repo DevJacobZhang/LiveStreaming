@@ -19,10 +19,10 @@ struct FirebaseDBInfo {
 //MARK: - For LiveStreamJSON
 
 struct LiveStreamResponse: Codable {
-    let result: Result
+    let result: CResult //命名Result會牴觸到Xcode底層的命名規則
 }
 
-struct Result: Codable {
+struct CResult: Codable {
     let lightyear_list: [LiveStreamModel] //熱門推薦
     let stream_list: [LiveStreamModel] //首頁
 }
@@ -62,3 +62,4 @@ struct Language: Codable {
     let en: String? //英文
     let tw: String? //繁體
 }
+
