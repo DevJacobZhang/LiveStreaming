@@ -1,0 +1,69 @@
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "03j-VJ-vZ8"; */
+"03j-VJ-vZ8.normalTitle" = "Button";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "4Fo-zB-9zL"; */
+"4Fo-zB-9zL.normalTitle" = "Button";
+
+/* Class = "UIButton"; configuration.title = "註冊"; ObjectID = "4Wd-Zk-N8G"; */
+"4Wd-Zk-N8G.configuration.title" = "註冊";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "4Wd-Zk-N8G"; */
+"4Wd-Zk-N8G.normalTitle" = "Button";
+
+/* Class = "UITabBarItem"; title = "首頁"; ObjectID = "AtI-Kk-vS1"; */
+"AtI-Kk-vS1.title" = "首頁";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "CY1-L3-AH1"; */
+"CY1-L3-AH1.normalTitle" = "Button";
+
+/* Class = "UIButton"; normalTitle = "登出"; ObjectID = "HJ8-hN-hWC"; */
+"HJ8-hN-hWC.normalTitle" = "登出";
+
+/* Class = "UILabel"; text = "暱稱"; ObjectID = "JCe-sM-dsh"; */
+"JCe-sM-dsh.text" = "暱稱";
+
+/* Class = "UITabBarItem"; title = "搜尋"; ObjectID = "JP9-0d-Fdd"; */
+"JP9-0d-Fdd.title" = "搜尋";
+
+/* Class = "UIButton"; configuration.title = " 記住我"; ObjectID = "KOh-mH-09s"; */
+"KOh-mH-09s.configuration.title" = " 記住我";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "KOh-mH-09s"; */
+"KOh-mH-09s.normalTitle" = "Button";
+
+/* Class = "UITabBarItem"; title = "資訊"; ObjectID = "OQP-oP-W7d"; */
+"OQP-oP-W7d.title" = "資訊";
+
+/* Class = "UITextField"; placeholder = "帳號"; ObjectID = "ORv-kD-G0l"; */
+"ORv-kD-G0l.placeholder" = "帳號";
+
+/* Class = "UIButton"; configuration.title = "登入"; ObjectID = "R4D-Fx-DOZ"; */
+"R4D-Fx-DOZ.configuration.title" = "登入";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "R4D-Fx-DOZ"; */
+"R4D-Fx-DOZ.normalTitle" = "Button";
+
+/* Class = "UITextField"; placeholder = "請輸入4~20位字母或數字"; ObjectID = "Vef-8U-YwI"; */
+"Vef-8U-YwI.placeholder" = "請輸入4~20位字母或數字";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "Wpq-qT-Z3l"; */
+"Wpq-qT-Z3l.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "帳號"; ObjectID = "XkD-VU-miY"; */
+"XkD-VU-miY.text" = "帳號";
+
+/* Class = "UITextField"; placeholder = "暱稱"; ObjectID = "Xvp-Y5-0fw"; */
+"Xvp-Y5-0fw.placeholder" = "暱稱";
+
+/* Class = "UITextField"; placeholder = "密碼"; ObjectID = "bpK-Fo-haD"; */
+"bpK-Fo-haD.placeholder" = "密碼";
+
+/* Class = "UITextField"; placeholder = "saysomething"; ObjectID = "kb4-LE-dJq"; */
+"kb4-LE-dJq.placeholder" = "saysomething";
+
+/* Class = "UITextField"; placeholder = "請輸入4~20位字母或數字"; ObjectID = "uit-nX-8DD"; */
+"uit-nX-8DD.placeholder" = "請輸入4~20位字母或數字";
+
+/* Class = "UIButton"; normalTitle = "送出"; ObjectID = "zsR-jS-8fp"; */
+"zsR-jS-8fp.normalTitle" = "送出";

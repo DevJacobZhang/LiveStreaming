@@ -15,9 +15,9 @@ class MainTabBarController: UITabBarController {
         let vc2 = UINavigationController(rootViewController: (self.storyboard?.instantiateViewController(withIdentifier: "SearchViewController"))!)
         let vc3 = self.storyboard?.instantiateViewController(withIdentifier: "SelectorNavigationController")
         
-        vc1.tabBarItem.title = "首頁"
-        vc2.tabBarItem.title = "搜尋"
-        vc3?.tabBarItem.title = "個人"
+        vc1.tabBarItem.title = NSLocalizedString("frontPage", comment: "")
+        vc2.tabBarItem.title = NSLocalizedString("searchPage", comment: "")
+        vc3?.tabBarItem.title = NSLocalizedString("personalPage", comment: "")
         
         vc1.tabBarItem.image = UIImage(named: "tabHome")
         vc2.tabBarItem.image = UIImage(named: "tabSearch")

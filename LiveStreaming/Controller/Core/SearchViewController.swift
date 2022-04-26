@@ -90,6 +90,7 @@ extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSo
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let vc = self.storyboard!.instantiateViewController(withIdentifier: "ChatRoomViewController") as? ChatRoomViewController else {return}
+        vc.configureTitle(title: self.liveStreamModel[indexPath.row].stream_title)
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -100,7 +101,8 @@ extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSo
                 withReuseIdentifier: HeaderCollectionReusableView.identifier,
                 for: indexPath) as! HeaderCollectionReusableView
             
-            headerView.configureSearchResult(withTitle: "熱門推薦")
+            let localizationString = NSLocalizedString("熱門推薦", comment: "")
+            headerView.configureSearchResult(withTitle: localizationString)
             
             return headerView
         } else {
@@ -155,6 +157,7 @@ extension SearchViewController: UISearchResultsUpdating, SearchResultsViewContro
         print("get searchResult.delegate")
         DispatchQueue.main.async {
             guard let vc = self.storyboard!.instantiateViewController(withIdentifier: "ChatRoomViewController") as? ChatRoomViewController else {return}
+            vc.configureTitle(title: liveStreamModel.stream_title)
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }

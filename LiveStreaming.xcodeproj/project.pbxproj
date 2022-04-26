@@ -42,6 +42,9 @@
 		4BFDDB2E27F4A78000771864 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BFDDB2D27F4A78000771864 /* InfoViewController.swift */; };
 		4BFDDB3127F5615B00771864 /* LiveStreamModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BFDDB3027F5615B00771864 /* LiveStreamModel.swift */; };
 		6216DF292812A4F800F37989 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6216DF282812A4F800F37989 /* GoogleService-Info.plist */; };
+		62197ACD281650B700BE74BD /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 62197ACF281650B700BE74BD /* Localizable.strings */; };
+		62197B1928178DC100BE74BD /* UsersBarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62197B1828178DC100BE74BD /* UsersBarCollectionViewCell.swift */; };
+		62197B1B2817A58F00BE74BD /* FollowsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62197B1A2817A58F00BE74BD /* FollowsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -77,6 +80,16 @@
 		4BFDDB2D27F4A78000771864 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		4BFDDB3027F5615B00771864 /* LiveStreamModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveStreamModel.swift; sourceTree = "<group>"; };
 		6216DF282812A4F800F37989 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		62197AC728164F3500BE74BD /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
+		62197AC828164F6300BE74BD /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		62197ACA28164FD000BE74BD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
+		62197ACE281650B700BE74BD /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		62197AD02816520C00BE74BD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		62197AD12816521C00BE74BD /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Main.strings"; sourceTree = "<group>"; };
+		62197AD22816521C00BE74BD /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		62197AD32816521C00BE74BD /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		62197B1828178DC100BE74BD /* UsersBarCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersBarCollectionViewCell.swift; sourceTree = "<group>"; };
+		62197B1A2817A58F00BE74BD /* FollowsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +128,7 @@
 				4B32070B27FDE7C6002670E1 /* LoginViewController.swift */,
 				4B4A423127FB303F00A861ED /* SignUpViewController.swift */,
 				4B7F1EB3280C12960037A5D8 /* MainTabBarController.swift */,
+				62197B1A2817A58F00BE74BD /* FollowsViewController.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -127,6 +141,7 @@
 				4B923025280567E0003FBC18 /* CustomAlertView.swift */,
 				4B561D182808303C00932A3D /* ChatLabelTableViewCell.xib */,
 				4B92302C28067E60003FBC18 /* ChatLabelTableViewCell.swift */,
+				62197B1828178DC100BE74BD /* UsersBarCollectionViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -174,6 +189,7 @@
 		4BFDDAC027F33AC900771864 = {
 			isa = PBXGroup;
 			children = (
+				62197ACF281650B700BE74BD /* Localizable.strings */,
 				6216DF282812A4F800F37989 /* GoogleService-Info.plist */,
 				4B281FCF27F83EF8007183FC /* myTestJsonFile.json */,
 				4BFDDACB27F33AC900771864 /* LiveStreaming */,
@@ -262,6 +278,8 @@
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hans",
+				"zh-Hant",
 			);
 			mainGroup = 4BFDDAC027F33AC900771864;
 			packageReferences = (
@@ -286,6 +304,7 @@
 				4BFDDADC27F33ACA00771864 /* LaunchScreen.storyboard in Resources */,
 				4BFDDAD927F33ACA00771864 /* Assets.xcassets in Resources */,
 				4B561D192808303C00932A3D /* ChatLabelTableViewCell.xib in Resources */,
+				62197ACD281650B700BE74BD /* Localizable.strings in Resources */,
 				4BFDDAD427F33AC900771864 /* Main.storyboard in Resources */,
 				6216DF292812A4F800F37989 /* GoogleService-Info.plist in Resources */,
 			);
@@ -300,6 +319,7 @@
 			files = (
 				4B7F1EBC280D55AB0037A5D8 /* SelectorNavigationController.swift in Sources */,
 				4BFDDB2C27F4A67700771864 /* SearchViewController.swift in Sources */,
+				62197B1928178DC100BE74BD /* UsersBarCollectionViewCell.swift in Sources */,
 				4B6BB2152806FC5600CFC983 /* CollectionReusableView.swift in Sources */,
 				4B7F1EB4280C12960037A5D8 /* MainTabBarController.swift in Sources */,
 				4BFDDAD727F33AC900771864 /* LiveStreaming.xcdatamodeld in Sources */,
@@ -307,6 +327,7 @@
 				4B922FF12803D4E1003FBC18 /* ChatRoomViewController.swift in Sources */,
 				4BFDDB2E27F4A78000771864 /* InfoViewController.swift in Sources */,
 				4BFDDAD127F33AC900771864 /* ViewController.swift in Sources */,
+				62197B1B2817A58F00BE74BD /* FollowsViewController.swift in Sources */,
 				4B281FC327F80C63007183FC /* MyCollectionView.swift in Sources */,
 				4BFDDB3127F5615B00771864 /* LiveStreamModel.swift in Sources */,
 				4B92302D28067E60003FBC18 /* ChatLabelTableViewCell.swift in Sources */,
@@ -331,6 +352,9 @@
 			isa = PBXVariantGroup;
 			children = (
 				4BFDDAD327F33AC900771864 /* Base */,
+				62197AC728164F3500BE74BD /* zh-Hans */,
+				62197ACA28164FD000BE74BD /* en */,
+				62197AD12816521C00BE74BD /* zh-Hant */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -339,8 +363,20 @@
 			isa = PBXVariantGroup;
 			children = (
 				4BFDDADB27F33ACA00771864 /* Base */,
+				62197AC828164F6300BE74BD /* zh-Hans */,
+				62197AD22816521C00BE74BD /* zh-Hant */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		62197ACF281650B700BE74BD /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				62197ACE281650B700BE74BD /* zh-Hans */,
+				62197AD02816520C00BE74BD /* en */,
+				62197AD32816521C00BE74BD /* zh-Hant */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -350,6 +386,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
@@ -410,6 +447,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
@@ -525,6 +563,7 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
+				WARNING_CFLAGS = "";
 			};
 			name = Release;
 		};

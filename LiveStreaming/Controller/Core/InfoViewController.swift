@@ -46,13 +46,18 @@ class InfoViewController: UIViewController {
     @IBOutlet weak var remenberButton: UIButton!
     @IBOutlet weak var accountTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var loginButton: UIButton!
+    @IBOutlet weak var signupButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        remenberButton.setTitle(NSLocalizedString("記住我", comment: ""), for: .normal)
+        loginButton.setTitle(NSLocalizedString("登入", comment: ""), for: .normal)
+        signupButton.setTitle(NSLocalizedString("註冊", comment: ""), for: .normal)
         
         let labelAccount:UILabel = {
            let label = UILabel()
-            label.text = " 帳號："
+            label.text = NSLocalizedString("帳號", comment: "")
             label.textColor = .gray
             return label
         }()
@@ -69,7 +74,7 @@ class InfoViewController: UIViewController {
         
         let labelPassword:UILabel = {
            let label = UILabel()
-            label.text = " 密碼："
+            label.text = NSLocalizedString("密碼", comment: "")
             label.textColor = .gray
             return label
         }()

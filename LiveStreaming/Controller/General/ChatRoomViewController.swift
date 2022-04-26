@@ -12,9 +12,9 @@ class ChatRoomViewController: UIViewController, CustomAlertViewDelegate {
 
     
     private var keyboardStatus: Bool = false
-    
     private var messageAllAry = [String]()
-    
+    private var usersBarArray = [String]()
+    private let userIn = true, userOut = false
     @IBOutlet weak var heartButton: UIButton!
     @IBOutlet weak var messageTextField: UITextField!
     @IBOutlet weak var sendMsgButton: UIButton!
@@ -40,6 +40,40 @@ class ChatRoomViewController: UIViewController, CustomAlertViewDelegate {
         return view
     }()
     
+    let streamTitle: UILabel = {
+        let label = UILabel()
+        label.textAlignment = .center
+        label.alpha = 0.6
+        label.textColor = .white
+        label.backgroundColor = .black
+        label.layer.cornerRadius = 10
+        label.layer.masksToBounds = true
+        label.text = "快來玩我"
+        return label
+    }()
+    
+    let realcountLabel: UILabel = {
+        let label = UILabel()
+        label.textAlignment = .center
+        label.alpha = 0.6
+        label.textColor = .white
+        label.backgroundColor = .black
+        label.layer.cornerRadius = 10
+        label.layer.masksToBounds = true
+        label.text = "在線人數："
+        return label
+    }()
+    
+    private let collectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.itemSize = CGSize(width: 40, height: 40)
+        layout.scrollDirection = .horizontal
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.register(UsersBarCollectionViewCell.self, forCellWithReuseIdentifier: UsersBarCollectionViewCell.identifier)
+        collectionView.backgroundColor = .clear
+        return collectionView
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -62,6 +96,13 @@ class ChatRoomViewController: UIViewController, CustomAlertViewDelegate {
         self.streamView.addSubview(self.messageTextField)
         self.streamView.addSubview(self.sendMsgButton)
         self.streamView.addSubview(self.heartButton)
+        self.streamView.addSubview(self.streamTitle)
+        self.streamView.addSubview(self.realcountLabel)
+        
+        self.view.addSubview(collectionView)
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        
         
         ChatPersistenceManager.shard.delegate = self
         /*------------------------------// start webSocket//-----------------------------------*/
@@ -87,9 +128,11 @@ class ChatRoomViewController: UIViewController, CustomAlertViewDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.streamView.frame = self.view.bounds
-        
+        streamTitle.frame = CGRect(x: 10, y: 40, width: 150, height: 40)
+        realcountLabel.frame = CGRect(x: 10, y: streamTitle.frame.height + streamTitle.frame.origin.y + 10.0, width: 135, height: 40)
         configureButtonFrame()
         fadeOutViewAction(animation: true, alpha: 0.3)
+        collectionView.frame = CGRect(x: self.view.frame.width / 2, y: 40, width: 200, height: 40)
         
         
     }
@@ -102,12 +145,18 @@ class ChatRoomViewController: UIViewController, CustomAlertViewDelegate {
         streamView.removeFromSuperview()
     }
     
-    func configureButtonFrame() {
+    func configureTitle(title: String?) {
+        if title != nil {
+            self.streamTitle.text = title!
+        }
+    }
+
+    private func configureButtonFrame() {
         //設定button的位子，以螢幕寬高來動態調節
 
         let width = self.view.bounds.width / 9.0 //button的大小
         let offsetX = self.view.bounds.width - (width * 2.0) //Ｘ位子
-        let offsetY = self.view.bounds.height / 10.0 //Ｙ位子
+        let offsetY = self.view.bounds.height / 9.0 //Ｙ位子
         self.logoutButton.frame = CGRect(x: offsetX, y: offsetY, width: width, height: width)
         self.logoutButton.layer.cornerRadius = logoutButton.frame.width / 2
         
@@ -250,10 +299,15 @@ extension ChatRoomViewController {
                 var str = ""
                 if result.body.entry_notice?.action! == "enter" {
                     str = "  \(result.body.entry_notice?.username ?? "是誰？")：登入  "
+                    usersBarUpdate(nickName: result.body.entry_notice?.username ?? "訪客", inOut: userIn)
                 } else {
                     str = "  \(result.body.entry_notice?.username ?? "是誰？")：登出  "
+                    usersBarUpdate(nickName: result.body.entry_notice?.username ?? "訪客", inOut: userOut)
                 }
                 self.messageAllAry.append(str)
+                DispatchQueue.main.async {
+                    self.realcountLabel.text = "在線人數：\(result.body.real_count ?? 0)"
+                }
                 
             }else if senderRole == -1 {// -1代表觀看者的發話
                 let str = "  \(result.body.nickname ?? "test?")：\(result.body.text ?? "?")  "
@@ -269,6 +323,43 @@ extension ChatRoomViewController {
         } catch {
             print(error.localizedDescription)
         }
+    }
+}
+
+//MARK: - UICollectionViewDelegate, UICollectionViewDataSource
+
+extension ChatRoomViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return usersBarArray.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: UsersBarCollectionViewCell.identifier, for: indexPath) as? UsersBarCollectionViewCell else {
+            return UICollectionViewCell()
+        }
+        cell.configure(text: usersBarArray[indexPath.row])
+        return cell
+    }
+    
+    private func usersBarUpdate(nickName: String, inOut: Bool) {
+        if usersBarArray.count < 0 { return }
+        if inOut {
+            usersBarArray.append(nickName)
+        } else {
+            for index in 0 ..< usersBarArray.count {
+                if usersBarArray[index] == nickName {
+                    usersBarArray.remove(at: index)
+                }
+            }
+        }
+        DispatchQueue.main.async {
+            self.collectionView.reloadData()
+        }
+        
     }
 }
 

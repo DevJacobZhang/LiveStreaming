@@ -50,6 +50,7 @@ struct MsgBody:Codable {
     let text: String?
     let entry_notice: ActionStatus?//進入或離開
     let content: Language? //公告
+    let real_count: Int?
 }
 struct ActionStatus: Codable {
     let username: String?

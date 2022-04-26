@@ -1,0 +1,26 @@
+/* 
+  Localizable.strings
+  LiveStreaming
+
+  Created by Cruise_Zhang on 2022/4/25.
+  
+*/
+
+"frontPage" = "Front";
+"searchPage" = "Search";
+"personalPage" = "Personal";
+
+"熱門推薦" = "Popular";
+"搜尋結果" = "Results";
+
+"帳號" = " account";
+"密碼" = " password";
+"登入" = "LogIn";
+"註冊" = "SignUp";
+"記住我" = "RemenberMe";
+
+"註冊會員" = "SignUp";
+"會員資訊" = "Information";
+"暱稱" = "nickname";
+"請輸入4~20位字母或數字" = "enter 4~20 letter or number";
+"送出" = "GO!";

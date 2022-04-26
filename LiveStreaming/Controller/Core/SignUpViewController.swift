@@ -35,7 +35,11 @@ class SignUpViewController: UIViewController, APICallerDelegateOfCreate {
         super.viewDidLoad()
         
         self.navigationController?.navigationBar.isHidden = false
-        self.title = "註冊會員"
+        self.title = NSLocalizedString("註冊會員", comment: "")
+        nickNameTextField.placeholder = NSLocalizedString("暱稱", comment: "")
+        accountTextField.placeholder = NSLocalizedString("請輸入4~20位字母或數字", comment: "")
+        passwordTextField.placeholder = NSLocalizedString("請輸入4~20位字母或數字", comment: "")
+        signUpButton.setTitle(NSLocalizedString("送出", comment: ""), for: .normal)
         
         activityIndicator.center = self.view.center
         let width = self.view.bounds.size.width / 2

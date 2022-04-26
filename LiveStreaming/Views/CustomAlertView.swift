@@ -86,13 +86,11 @@ class CustomAlertView: UIView {
     }
     
     @objc func leaveAction() {
-        print("leave")
         self.delegate?.userDidTapLeaveButton(leave: true)
         
     }
     
     @objc func stayAction() {
-        print("stay")
         self.delegate?.userDidTapLeaveButton(leave: false)
     }
     

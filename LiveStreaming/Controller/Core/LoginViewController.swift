@@ -19,7 +19,7 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         
         self.navigationItem.setHidesBackButton(true, animated: false)
-        self.title = "會員資訊"
+        self.title = NSLocalizedString("會員資訊", comment:"")
         
         headPhotoImageView.layer.cornerRadius = headPhotoImageView.frame.height / 2
         headPhotoImageView.layer.masksToBounds = true
@@ -27,8 +27,8 @@ class LoginViewController: UIViewController {
         logoutButton.layer.cornerRadius = 20
         logoutButton.layer.masksToBounds = true
         
-        nicknameLabel.text = "暱稱："
-        accountLabel.text = "帳號："
+        nicknameLabel.text = NSLocalizedString("暱稱", comment: "") + ":"
+        accountLabel.text = NSLocalizedString("帳號", comment: "") + ":"
         
         self.showInfoFromFirebase()
     }
@@ -49,11 +49,11 @@ class LoginViewController: UIViewController {
                 break
             }
         }
-        self.accountLabel.text = "帳號：\(userAccount)"
+        self.accountLabel.text = NSLocalizedString("帳號", comment: "") + ":" + userAccount
         APICaller.shared.getCurrentUserInfo { result, error in
             if result != nil && error == nil {
                 DispatchQueue.main.async {
-                    self.nicknameLabel.text = "暱稱：\(result?.nickname ?? "empty")"
+                    self.nicknameLabel.text = NSLocalizedString("暱稱", comment: "") + ":" + (result?.nickname ?? "empty")
                     self.headPhotoImageView.image = result?.image
                 }
             }

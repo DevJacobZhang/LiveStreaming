@@ -96,12 +96,12 @@ extension SearchResultsViewController: UICollectionViewDelegate, UICollectionVie
                 for: indexPath) as! HeaderCollectionReusableView
             
             if indexPath.section == 0 {
-                headerView.configureSearchResult(withTitle: "搜尋結果")
+                let localizationString = NSLocalizedString("搜尋結果", comment: "")
+                headerView.configureSearchResult(withTitle: localizationString)
             } else {
-                headerView.configureSearchResult(withTitle: "熱門推薦")
-
+                let localizationString = NSLocalizedString("熱門推薦", comment: "")
+                headerView.configureSearchResult(withTitle: localizationString)
             }
-            
             return headerView
         } else {
             return UICollectionReusableView()

@@ -324,8 +324,10 @@
                     <navigationItem key="navigationItem" id="ACt-Ne-6YB"/>
                     <connections>
                         <outlet property="accountTextField" destination="ORv-kD-G0l" id="A2G-9N-iXz"/>
+                        <outlet property="loginButton" destination="R4D-Fx-DOZ" id="Ba2-4S-LBU"/>
                         <outlet property="passwordTextField" destination="bpK-Fo-haD" id="2j9-56-8g1"/>
                         <outlet property="remenberButton" destination="KOh-mH-09s" id="CKL-Wb-MNK"/>
+                        <outlet property="signupButton" destination="4Wd-Zk-N8G" id="11b-ZQ-rcC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fgb-0v-ZPJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
