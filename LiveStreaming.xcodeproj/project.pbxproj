@@ -45,6 +45,8 @@
 		62197ACD281650B700BE74BD /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 62197ACF281650B700BE74BD /* Localizable.strings */; };
 		62197B1928178DC100BE74BD /* UsersBarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62197B1828178DC100BE74BD /* UsersBarCollectionViewCell.swift */; };
 		62197B1B2817A58F00BE74BD /* FollowsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62197B1A2817A58F00BE74BD /* FollowsViewController.swift */; };
+		62197B1D2817AA5900BE74BD /* FollowsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62197B1C2817AA5900BE74BD /* FollowsTableViewCell.swift */; };
+		62197B1F2817BEBC00BE74BD /* StreamTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62197B1E2817BEBC00BE74BD /* StreamTitleView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -90,6 +92,8 @@
 		62197AD32816521C00BE74BD /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		62197B1828178DC100BE74BD /* UsersBarCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersBarCollectionViewCell.swift; sourceTree = "<group>"; };
 		62197B1A2817A58F00BE74BD /* FollowsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowsViewController.swift; sourceTree = "<group>"; };
+		62197B1C2817AA5900BE74BD /* FollowsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowsTableViewCell.swift; sourceTree = "<group>"; };
+		62197B1E2817BEBC00BE74BD /* StreamTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamTitleView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,8 +131,8 @@
 				4BFDDB2D27F4A78000771864 /* InfoViewController.swift */,
 				4B32070B27FDE7C6002670E1 /* LoginViewController.swift */,
 				4B4A423127FB303F00A861ED /* SignUpViewController.swift */,
-				4B7F1EB3280C12960037A5D8 /* MainTabBarController.swift */,
 				62197B1A2817A58F00BE74BD /* FollowsViewController.swift */,
+				4B7F1EB3280C12960037A5D8 /* MainTabBarController.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -142,6 +146,8 @@
 				4B561D182808303C00932A3D /* ChatLabelTableViewCell.xib */,
 				4B92302C28067E60003FBC18 /* ChatLabelTableViewCell.swift */,
 				62197B1828178DC100BE74BD /* UsersBarCollectionViewCell.swift */,
+				62197B1C2817AA5900BE74BD /* FollowsTableViewCell.swift */,
+				62197B1E2817BEBC00BE74BD /* StreamTitleView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -317,6 +323,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				62197B1D2817AA5900BE74BD /* FollowsTableViewCell.swift in Sources */,
 				4B7F1EBC280D55AB0037A5D8 /* SelectorNavigationController.swift in Sources */,
 				4BFDDB2C27F4A67700771864 /* SearchViewController.swift in Sources */,
 				62197B1928178DC100BE74BD /* UsersBarCollectionViewCell.swift in Sources */,
@@ -331,6 +338,7 @@
 				4B281FC327F80C63007183FC /* MyCollectionView.swift in Sources */,
 				4BFDDB3127F5615B00771864 /* LiveStreamModel.swift in Sources */,
 				4B92302D28067E60003FBC18 /* ChatLabelTableViewCell.swift in Sources */,
+				62197B1F2817BEBC00BE74BD /* StreamTitleView.swift in Sources */,
 				4BFDDACD27F33AC900771864 /* AppDelegate.swift in Sources */,
 				4B9230242805326E003FBC18 /* ChatPersistenceManager.swift in Sources */,
 				4B923026280567E0003FBC18 /* CustomAlertView.swift in Sources */,

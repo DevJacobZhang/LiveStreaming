@@ -193,6 +193,31 @@
             </objects>
             <point key="canvasLocation" x="-849" y="1423"/>
         </scene>
+        <!--Follows View Controller-->
+        <scene sceneID="yMm-Xz-wd2">
+            <objects>
+                <viewController storyboardIdentifier="FollowsViewController" id="r0u-WK-Rt7" customClass="FollowsViewController" customModule="LiveStreaming" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="YYc-jH-6gw">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oUx-Ea-n9S">
+                                <rect key="frame" x="97" y="400" width="66" height="65"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain">
+                                    <imageReference key="image" image="heart.circle" catalog="system" symbolScale="large"/>
+                                </buttonConfiguration>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Fav-b2-Bfy"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ibq-fs-1rB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1991.3043478260872" y="2023.6607142857142"/>
+        </scene>
         <!--Info View Controller-->
         <scene sceneID="F8n-ul-KbP">
             <objects>
@@ -520,6 +545,7 @@
     <resources>
         <image name="btnEdit" width="41" height="41"/>
         <image name="eye.slash" catalog="system" width="128" height="86"/>
+        <image name="heart.circle" catalog="system" width="128" height="121"/>
         <image name="heart.fill" catalog="system" width="128" height="109"/>
         <image name="house.fill" catalog="system" width="128" height="106"/>
         <image name="info" catalog="system" width="93" height="128"/>

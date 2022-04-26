@@ -93,7 +93,10 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let vc = self.storyboard!.instantiateViewController(withIdentifier: "ChatRoomViewController") as? ChatRoomViewController else {return}
-        vc.configureTitle(title: self.liveStreamModel[indexPath.row].stream_title)
+        let user = self.liveStreamModel[indexPath.row].nickname ?? "無名稱"
+        let title = self.liveStreamModel[indexPath.row].stream_title ?? "無標題"
+        let photoUrl = self.liveStreamModel[indexPath.row].head_photo
+        vc.configure(photoUrlStr: photoUrl, user: user, title: title)
         self.navigationController?.pushViewController(vc, animated: true)
         
  

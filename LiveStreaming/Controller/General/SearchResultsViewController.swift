@@ -84,7 +84,13 @@ extension SearchResultsViewController: UICollectionViewDelegate, UICollectionVie
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        self.delegate?.searchResultsViewControllerDidTapItem(liveStreamModel: self.liveStreamModel[indexPath.row])
+        if indexPath.section == 0{
+            self.delegate?.searchResultsViewControllerDidTapItem(liveStreamModel: self.resultliveStreamModel[indexPath.row])
+
+        } else {
+            self.delegate?.searchResultsViewControllerDidTapItem(liveStreamModel: self.liveStreamModel[indexPath.row])
+
+        }
         
     }
     

@@ -40,18 +40,6 @@ class ChatRoomViewController: UIViewController, CustomAlertViewDelegate {
         return view
     }()
     
-    let streamTitle: UILabel = {
-        let label = UILabel()
-        label.textAlignment = .center
-        label.alpha = 0.6
-        label.textColor = .white
-        label.backgroundColor = .black
-        label.layer.cornerRadius = 10
-        label.layer.masksToBounds = true
-        label.text = "快來玩我"
-        return label
-    }()
-    
     let realcountLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
@@ -74,6 +62,13 @@ class ChatRoomViewController: UIViewController, CustomAlertViewDelegate {
         return collectionView
     }()
     
+    private let streamTitleView: StreamTitleView = {
+        let view = StreamTitleView()
+        view.alpha = 0.7
+        view.backgroundColor = .black
+        return view
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -91,13 +86,13 @@ class ChatRoomViewController: UIViewController, CustomAlertViewDelegate {
         self.tableView.dataSource = self
         self.tableView.allowsSelection = false
         self.tableView.register(UINib(nibName: "ChatLabelTableViewCell", bundle: nil), forCellReuseIdentifier: "ChatLabelTableViewCell")
-        self.streamView.addSubview(self.tableView)
+        self.streamView.addSubview(tableView)
         
-        self.streamView.addSubview(self.messageTextField)
-        self.streamView.addSubview(self.sendMsgButton)
-        self.streamView.addSubview(self.heartButton)
-        self.streamView.addSubview(self.streamTitle)
-        self.streamView.addSubview(self.realcountLabel)
+        self.streamView.addSubview(messageTextField)
+        self.streamView.addSubview(sendMsgButton)
+        self.streamView.addSubview(heartButton)
+        self.streamView.addSubview(streamTitleView)
+        self.streamView.addSubview(realcountLabel)
         
         self.view.addSubview(collectionView)
         collectionView.delegate = self
@@ -128,12 +123,15 @@ class ChatRoomViewController: UIViewController, CustomAlertViewDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.streamView.frame = self.view.bounds
-        streamTitle.frame = CGRect(x: 10, y: 40, width: 150, height: 40)
-        realcountLabel.frame = CGRect(x: 10, y: streamTitle.frame.height + streamTitle.frame.origin.y + 10.0, width: 135, height: 40)
+        
+        streamTitleView.frame = CGRect(x: 10, y: 40, width: self.view.bounds.width / 2, height: 50)
+        streamTitleView.layer.cornerRadius = 15
+        streamTitleView.layer.masksToBounds = true
+        
+        realcountLabel.frame = CGRect(x: 10, y: streamTitleView.frame.height + streamTitleView.frame.origin.y + 10.0, width: 135, height: 40)
         configureButtonFrame()
         fadeOutViewAction(animation: true, alpha: 0.3)
-        collectionView.frame = CGRect(x: self.view.frame.width / 2, y: 40, width: 200, height: 40)
-        
+        collectionView.frame = CGRect(x: self.view.frame.width / 2 + 50.0, y: 40, width: 150, height: 40)
         
     }
     override func viewWillDisappear(_ animated: Bool) {
@@ -143,12 +141,6 @@ class ChatRoomViewController: UIViewController, CustomAlertViewDelegate {
         
         streamView.playRemove()
         streamView.removeFromSuperview()
-    }
-    
-    func configureTitle(title: String?) {
-        if title != nil {
-            self.streamTitle.text = title!
-        }
     }
 
     private func configureButtonFrame() {
@@ -199,6 +191,12 @@ class ChatRoomViewController: UIViewController, CustomAlertViewDelegate {
             self.messageTextField.text = ""
         }
         
+    }
+    
+    //MARK: - 配置左上角大標題的內容
+    
+    public func configure(photoUrlStr: String?, user: String, title: String?) {
+        self.streamTitleView.configure(photoUrlStr:photoUrlStr ,user: user, title: title)
     }
     
     //MARK: - 聊天室淡出效果

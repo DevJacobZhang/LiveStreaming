@@ -10,20 +10,27 @@ import UIKit
 class MainTabBarController: UITabBarController {
 
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         let vc1 = UINavigationController(rootViewController: (self.storyboard?.instantiateViewController(withIdentifier: "ViewController"))!)
         let vc2 = UINavigationController(rootViewController: (self.storyboard?.instantiateViewController(withIdentifier: "SearchViewController"))!)
-        let vc3 = self.storyboard?.instantiateViewController(withIdentifier: "SelectorNavigationController")
+        let vc3 = UINavigationController(rootViewController:( self.storyboard?.instantiateViewController(withIdentifier: "FollowsViewController"))!)
+        let vc4 = self.storyboard?.instantiateViewController(withIdentifier: "SelectorNavigationController")
+        
+        
         
         vc1.tabBarItem.title = NSLocalizedString("frontPage", comment: "")
         vc2.tabBarItem.title = NSLocalizedString("searchPage", comment: "")
-        vc3?.tabBarItem.title = NSLocalizedString("personalPage", comment: "")
+        vc4?.tabBarItem.title = NSLocalizedString("personalPage", comment: "")
+        vc3.tabBarItem.title = NSLocalizedString("Follows", comment: "")
+        
         
         vc1.tabBarItem.image = UIImage(named: "tabHome")
         vc2.tabBarItem.image = UIImage(named: "tabSearch")
-        vc3?.tabBarItem.image = UIImage(named: "tabPersonal")
+        vc4?.tabBarItem.image = UIImage(named: "tabPersonal")
+        vc3.tabBarItem.image = UIImage(systemName: "heart.circle")
            
-        self.setViewControllers([vc1,vc2,vc3!], animated: false)
+        self.setViewControllers([vc1,vc2,vc3,vc4!], animated: false)
 
     }
     
