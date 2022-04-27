@@ -41,7 +41,7 @@ class StreamTitleView: UIView {
     
     private let followButton: UIButton = {
         let button = UIButton()
-        button.backgroundColor = .blue
+        button.backgroundColor = UIColor(red: 252/255, green: 157/255, blue: 154/255, alpha: 1)
         button.setTitle("Follow", for: .normal)
         button.layer.cornerRadius = 15
         button.layer.masksToBounds = true
@@ -59,6 +59,16 @@ class StreamTitleView: UIView {
     }
     
     @objc func followAction() {
+        let animation = CABasicAnimation()
+        animation.keyPath = "transform.rotation"
+       
+        animation.fromValue = 0
+        animation.toValue = Double.pi
+        animation.autoreverses = true
+        animation.duration = 0.3
+        animation.isRemovedOnCompletion = false
+        followButton.layer.add(animation, forKey: nil)
+//        followButton.isSelected = !followButton.isSelected
         
         DataPersistenceManager.shard.followTitleWith(model: self.liveStreamModel!) { result in
             switch result {

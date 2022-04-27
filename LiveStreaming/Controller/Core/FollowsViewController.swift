@@ -67,7 +67,7 @@ class FollowsViewController: UIViewController, UITableViewDelegate, UITableViewD
         guard let cell = tableView.dequeueReusableCell(withIdentifier: FollowsTableViewCell.identifier, for: indexPath) as? FollowsTableViewCell else {
             return UITableViewCell()
         }
-        print("\(follows[indexPath.row].nickname ?? "coreData沒有資料？")")
+        cell.selectionStyle = .none
         cell.configure(model: follows[indexPath.row])
         return cell
     }
@@ -92,5 +92,14 @@ class FollowsViewController: UIViewController, UITableViewDelegate, UITableViewD
         default:
             break
         }
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let vc = storyboard?.instantiateViewController(withIdentifier: "ChatRoomViewController") as? ChatRoomViewController else { return }
+        let head_photo = self.follows[indexPath.row].head_photo
+        let nickname = self.follows[indexPath.row].nickname
+        let stream_title = self.follows[indexPath.row].stream_title
+        let liveStreamModel = LiveStreamModel(testNumber: nil, head_photo: head_photo, nickname: nickname, online_num: nil, stream_title: stream_title, tags: nil)
+        vc.configure(liveStreamModel: liveStreamModel)
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 }

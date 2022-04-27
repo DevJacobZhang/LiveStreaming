@@ -43,9 +43,8 @@ class ChatRoomViewController: UIViewController, CustomAlertViewDelegate {
     let realcountLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
-        label.alpha = 0.6
         label.textColor = .white
-        label.backgroundColor = .black
+        label.backgroundColor = UIColor(red: 131/255, green: 175/255, blue: 155/255, alpha: 1)
         label.layer.cornerRadius = 10
         label.layer.masksToBounds = true
         label.text = "在線人數："
@@ -138,6 +137,7 @@ class ChatRoomViewController: UIViewController, CustomAlertViewDelegate {
         super.viewWillDisappear(animated)
         self.tabBarController?.tabBar.isHidden = false
         self.navigationController?.navigationBar.isHidden = false
+        usersBarArray.removeAll()
         
         streamView.playRemove()
         streamView.removeFromSuperview()
@@ -351,8 +351,11 @@ extension ChatRoomViewController: UICollectionViewDelegate, UICollectionViewData
             usersBarArray.append(nickName)
         } else {
             for index in 0 ..< usersBarArray.count {
+
                 if usersBarArray[index] == nickName {
+                    
                     usersBarArray.remove(at: index)
+                    break
                 }
             }
         }
