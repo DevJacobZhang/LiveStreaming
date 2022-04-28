@@ -39,7 +39,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .systemBackground
-            
+        
         APICaller.shared.getLiveStreamOfStreamlist { result in
             self.liveStreamModel = result
             self.myCollectionView.reloadData()

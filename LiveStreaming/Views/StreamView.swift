@@ -29,7 +29,7 @@ class StreamView: UIView {
         guard layeee != nil else { return }
         self.layer.addSublayer(layeee!)
         
-        player?.play()
+//        player?.play()
     }
 
     required init?(coder: NSCoder) {

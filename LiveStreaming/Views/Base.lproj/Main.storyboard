@@ -22,7 +22,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eO8-kD-KOX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2541" y="676"/>
+            <point key="canvasLocation" x="-3164" y="1118"/>
         </scene>
         <!--首頁-->
         <scene sceneID="ugD-da-T81">
@@ -463,7 +463,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="picPersonal" translatesAutoresizingMaskIntoConstraints="NO" id="9K1-aN-fXE">
-                                <rect key="frame" x="122" y="94" width="170" height="170"/>
+                                <rect key="frame" x="122" y="139" width="170" height="170"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="170" id="HRT-ne-Kx1"/>
@@ -515,7 +515,7 @@
                             <constraint firstItem="9K1-aN-fXE" firstAttribute="centerX" secondItem="nB0-uF-bfY" secondAttribute="centerX" id="fri-Ik-FtN"/>
                             <constraint firstItem="XkD-VU-miY" firstAttribute="width" secondItem="nB0-uF-bfY" secondAttribute="width" multiplier="0.6" id="qv4-fq-Nqa"/>
                             <constraint firstItem="XkD-VU-miY" firstAttribute="centerY" secondItem="nB0-uF-bfY" secondAttribute="centerY" id="u69-uZ-ZRB"/>
-                            <constraint firstItem="9K1-aN-fXE" firstAttribute="centerY" secondItem="nB0-uF-bfY" secondAttribute="centerY" multiplier="0.4" id="yug-Am-xcH"/>
+                            <constraint firstItem="9K1-aN-fXE" firstAttribute="centerY" secondItem="nB0-uF-bfY" secondAttribute="centerY" multiplier="0.5" id="yug-Am-xcH"/>
                             <constraint firstItem="XkD-VU-miY" firstAttribute="centerX" secondItem="JCe-sM-dsh" secondAttribute="centerX" id="z9Z-ke-AnF"/>
                             <constraint firstItem="XkD-VU-miY" firstAttribute="centerX" secondItem="nB0-uF-bfY" secondAttribute="centerX" id="zuF-jj-GoX"/>
                         </constraints>

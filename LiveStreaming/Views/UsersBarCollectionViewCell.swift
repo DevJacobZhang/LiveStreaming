@@ -13,8 +13,7 @@ class UsersBarCollectionViewCell: UICollectionViewCell {
     let myLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
-        label.backgroundColor = .black
-        label.alpha = 0.6
+        label.alpha = 1
         label.textAlignment = .center
         label.text = "T"
         label.font = UIFont.systemFont(ofSize: 25)
@@ -45,6 +44,7 @@ class UsersBarCollectionViewCell: UICollectionViewCell {
     public func configure(text: String) {
         let index = text.startIndex
         let firstWord = String(text[index])
+        self.myLabel.backgroundColor = RandomColor().getRandomColor()
         self.myLabel.text = firstWord
     }
 }

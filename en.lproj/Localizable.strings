@@ -25,3 +25,7 @@
 "暱稱" = "nickname";
 "請輸入4~20位字母或數字" = "enter 4~20 letter or number";
 "送出" = "GO!";
+
+"立馬走" = "Leave";
+"先不要" = "Stay";
+"確定離開此聊天室？" = "sure to leave this room?";

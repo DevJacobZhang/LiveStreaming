@@ -52,7 +52,7 @@ final class ChatPersistenceManager: NSObject {
         })
     }
     func receive() {
-        webSocket?.receive(completionHandler: {[weak self] result in
+        webSocket?.receive(completionHandler: { [weak self] result in
             switch result{
             case .success(let message):
                 switch message {

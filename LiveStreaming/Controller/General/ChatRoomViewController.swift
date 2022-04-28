@@ -20,6 +20,13 @@ class ChatRoomViewController: UIViewController, CustomAlertViewDelegate {
     @IBOutlet weak var sendMsgButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
     
+    var giftAry: [String] = ["火車", "飛機", "火箭", "跑車", "罐頭塔", "UFO", "特斯拉", "保時捷", "勞力士"]
+    /////////////////////用來設定GiftCollection禮物列的位子以及定位用的
+    private var originCollectionViewX = 0.0
+    private var openStatusX = 0.0
+    private var giftOpenStatus: Bool = false
+    /////////////////////////////////////////////////////////////
+    
     let streamView: StreamView = {
         let view = StreamView()
         return view
@@ -51,7 +58,7 @@ class ChatRoomViewController: UIViewController, CustomAlertViewDelegate {
         return label
     }()
     
-    private let collectionView: UICollectionView = {
+    private let usersCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.itemSize = CGSize(width: 40, height: 40)
         layout.scrollDirection = .horizontal
@@ -61,10 +68,30 @@ class ChatRoomViewController: UIViewController, CustomAlertViewDelegate {
         return collectionView
     }()
     
+    private let giftCollectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.itemSize = CGSize(width: 80, height: 80)
+        layout.scrollDirection = .vertical
+        let collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collection.register(GiftCollectionViewCell.self, forCellWithReuseIdentifier: GiftCollectionViewCell.identifier)
+        collection.backgroundColor = .clear
+        return collection
+    }()
+    
     private let streamTitleView: StreamTitleView = {
         let view = StreamTitleView()
         view.alpha = 0.7
         view.backgroundColor = .black
+        return view
+    }()
+    
+    private let arrowView: UIImageView = {
+        let view = UIImageView()
+        view.image = UIImage(systemName: "arrowshape.turn.up.left")
+        view.backgroundColor = .clear
+        view.tintColor = .white
+        view.contentMode = .scaleAspectFill
+        view.alpha = 0.4
         return view
     }()
     
@@ -76,6 +103,10 @@ class ChatRoomViewController: UIViewController, CustomAlertViewDelegate {
         self.tabBarController?.tabBar.isHidden = true
         self.navigationController?.navigationBar.isHidden = true
         
+        let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(panAction(_:)))
+        
+        streamView.isUserInteractionEnabled = true
+        streamView.addGestureRecognizer(panGestureRecognizer)
         
         self.view.addSubview(streamView)
         
@@ -93,10 +124,18 @@ class ChatRoomViewController: UIViewController, CustomAlertViewDelegate {
         self.streamView.addSubview(streamTitleView)
         self.streamView.addSubview(realcountLabel)
         
-        self.view.addSubview(collectionView)
-        collectionView.delegate = self
-        collectionView.dataSource = self
+        self.view.addSubview(usersCollectionView)
+        usersCollectionView.delegate = self
+        usersCollectionView.dataSource = self
         
+        self.view.addSubview(giftCollectionView)
+        giftCollectionView.delegate = self
+        giftCollectionView.dataSource = self
+        
+        originCollectionViewX = self.view.frame.width //11 pro = 375.0
+        openStatusX = self.view.frame.width - 80.0
+        
+        self.view.addSubview(arrowView)
         
         ChatPersistenceManager.shard.delegate = self
         /*------------------------------// start webSocket//-----------------------------------*/
@@ -130,7 +169,11 @@ class ChatRoomViewController: UIViewController, CustomAlertViewDelegate {
         realcountLabel.frame = CGRect(x: 10, y: streamTitleView.frame.height + streamTitleView.frame.origin.y + 10.0, width: 135, height: 40)
         configureButtonFrame()
         fadeOutViewAction(animation: true, alpha: 0.3)
-        collectionView.frame = CGRect(x: self.view.frame.width / 2 + 50.0, y: 40, width: 150, height: 40)
+        let width = self.view.bounds.width - (self.view.bounds.width / 2 + 50)
+        usersCollectionView.frame = CGRect(x: self.view.frame.width / 2 + 50.0, y: 40, width: width, height: 40)
+        giftCollectionView.frame = CGRect(x: originCollectionViewX, y: 200, width: 80, height: 350)
+        arrowView.frame.size = CGSize(width: 40, height: 40)
+        arrowView.frame.origin = CGPoint(x: self.view.bounds.width - 60, y: self.view.bounds.height / 2 - 30)
         
     }
     override func viewWillDisappear(_ animated: Bool) {
@@ -193,6 +236,43 @@ class ChatRoomViewController: UIViewController, CustomAlertViewDelegate {
         
     }
     
+    //MARK: - 點擊螢幕滑動來顯示GiftCollectionView
+    
+    @objc func panAction(_ sender: UIPanGestureRecognizer) {
+        
+        let translation: CGPoint = sender.translation(in: streamView)
+        if giftOpenStatus { // 禮物列打開時，根據現在的位子去做加減X
+            let offsetX = openStatusX + translation.x
+            self.giftCollectionView.frame.origin.x = offsetX
+            self.arrowView.frame.origin.x = offsetX - 40.0
+            
+        } else {//禮物列關閉時，根據畫面最右邊的X去做加減
+            let offsetX = originCollectionViewX + translation.x
+            self.giftCollectionView.frame.origin.x = offsetX
+            self.arrowView.frame.origin.x = offsetX - 40.0
+        }
+        
+        if sender.state == .ended { //放開手指時，如果x邊左就代表開啟禮物列，太右邊就關掉
+            if self.giftCollectionView.frame.origin.x <= (self.originCollectionViewX - 40) {
+                UIViewPropertyAnimator.runningPropertyAnimator(withDuration: 0.5, delay: 0) {
+                    self.giftCollectionView.frame.origin.x = self.originCollectionViewX - self.giftCollectionView.frame.width
+                    self.arrowView.frame.origin.x = self.giftCollectionView.frame.origin.x - 40.0
+                    self.giftOpenStatus = true
+                    self.arrowView.alpha = 0.0
+                    
+                }
+            } else {
+                UIViewPropertyAnimator.runningPropertyAnimator(withDuration: 0.5, delay: 0) {
+                    self.giftCollectionView.frame.origin.x = self.originCollectionViewX
+                    self.arrowView.frame.origin.x = self.originCollectionViewX - 40.0
+                    self.giftOpenStatus = false
+                    self.arrowView.alpha = 0.4
+                    
+                }
+            }
+        }
+    }
+    
     //MARK: - 配置左上角大標題的內容
     
     public func configure(liveStreamModel: LiveStreamModel?) {
@@ -245,6 +325,25 @@ class ChatRoomViewController: UIViewController, CustomAlertViewDelegate {
         
     }
 }
+
+//MARK: - 點擊禮物觸發delegate
+
+extension ChatRoomViewController: GiftCollectionViewCellDelegate {
+    func didTapGiftWith(giftTag: Int) {
+        print("送出禮物:\(giftTag)")
+        let controller = UIAlertController(title: "確定送出\"\(giftAry[giftTag])\"嗎", message: "主播會很開心的唷", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "當然", style: .default){ _ in
+            
+        }
+        let cancelAction = UIAlertAction(title: "沒錢", style: .cancel, handler: nil)
+        
+        controller.addAction(cancelAction)
+        controller.addAction(okAction)
+
+        present(controller, animated: true, completion: nil)
+    }
+}
+
 
 //MARK: - UITableViewDelegate UITableViewDataSource
 
@@ -326,23 +425,46 @@ extension ChatRoomViewController {
     }
 }
 
-//MARK: - UICollectionViewDelegate, UICollectionViewDataSource
+//MARK: - \UsersBar\ \Gift\ UICollectionViewDelegate, UICollectionViewDataSource
 
 extension ChatRoomViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
+        if collectionView == self.usersCollectionView {
+            //是userCollection
+            return 1
+        } else if collectionView == self.giftCollectionView {
+            //是giftCollection
+            return 1
+        }
+        return 0
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return usersBarArray.count
+        if collectionView == self.usersCollectionView {
+            return usersBarArray.count
+        } else if collectionView == self.giftCollectionView {
+            return giftAry.count
+        }
+        return 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: UsersBarCollectionViewCell.identifier, for: indexPath) as? UsersBarCollectionViewCell else {
-            return UICollectionViewCell()
+        if collectionView == self.usersCollectionView {
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: UsersBarCollectionViewCell.identifier, for: indexPath) as? UsersBarCollectionViewCell else {
+                return UICollectionViewCell()
+            }
+            cell.configure(text: usersBarArray[indexPath.row])
+            return cell
+        } else if collectionView == self.giftCollectionView {
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: GiftCollectionViewCell.identifier, for: indexPath) as? GiftCollectionViewCell else {
+                return UICollectionViewCell()
+            }
+            cell.configure(giftNumber: indexPath.row, giftName: giftAry[indexPath.row])
+            cell.delegate = self
+            return cell
         }
-        cell.configure(text: usersBarArray[indexPath.row])
-        return cell
+        
+        return UICollectionViewCell()
     }
     
     private func usersBarUpdate(nickName: String, inOut: Bool) {
@@ -360,7 +482,7 @@ extension ChatRoomViewController: UICollectionViewDelegate, UICollectionViewData
             }
         }
         DispatchQueue.main.async {
-            self.collectionView.reloadData()
+            self.usersCollectionView.reloadData()
         }
         
     }

@@ -41,14 +41,14 @@ class CustomAlertView: UIView {
         let lb = UILabel()
         lb.textAlignment = .center
         lb.textColor = .black
-        lb.text = "確定離開此聊天室？"
+        lb.text = NSLocalizedString("確定離開此聊天室？", comment: "")
         return lb
     }()
     
     let leaveButton: UIButton = {
         let button = UIButton()
         button.setTitleColor(UIColor.white, for: .normal)
-        button.setTitle("立馬走", for: .normal)
+        button.setTitle(NSLocalizedString("立馬走", comment: ""), for: .normal)
         button.backgroundColor = .gray
         button.layer.cornerRadius = 20
         button.layer.masksToBounds = true
@@ -58,7 +58,7 @@ class CustomAlertView: UIView {
     let stayButton: UIButton = {
         let button = UIButton()
         button.setTitleColor(UIColor.white, for: .normal)
-        button.setTitle("先不要", for: .normal)
+        button.setTitle(NSLocalizedString("先不要", comment: ""), for: .normal)
         button.backgroundColor = .black
         button.layer.cornerRadius = 20
         button.layer.masksToBounds = true

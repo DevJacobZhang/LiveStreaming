@@ -48,6 +48,8 @@
 		62197B1D2817AA5900BE74BD /* FollowsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62197B1C2817AA5900BE74BD /* FollowsTableViewCell.swift */; };
 		62197B1F2817BEBC00BE74BD /* StreamTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62197B1E2817BEBC00BE74BD /* StreamTitleView.swift */; };
 		62941A262817DA240073E755 /* FollowPersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62941A252817DA240073E755 /* FollowPersistenceManager.swift */; };
+		62941A282818FC950073E755 /* RandomColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62941A272818FC950073E755 /* RandomColor.swift */; };
+		62941A2A28192EFF0073E755 /* GiftCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62941A2928192EFF0073E755 /* GiftCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -96,6 +98,8 @@
 		62197B1C2817AA5900BE74BD /* FollowsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowsTableViewCell.swift; sourceTree = "<group>"; };
 		62197B1E2817BEBC00BE74BD /* StreamTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamTitleView.swift; sourceTree = "<group>"; };
 		62941A252817DA240073E755 /* FollowPersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowPersistenceManager.swift; sourceTree = "<group>"; };
+		62941A272818FC950073E755 /* RandomColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomColor.swift; sourceTree = "<group>"; };
+		62941A2928192EFF0073E755 /* GiftCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiftCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,6 +146,7 @@
 		4B281FC827F82C50007183FC /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				4BFDDAD227F33AC900771864 /* Main.storyboard */,
 				4B92302B28067E26003FBC18 /* CollectionViewCell */,
 				4B922FF42803DAF1003FBC18 /* StreamView.swift */,
 				4B923025280567E0003FBC18 /* CustomAlertView.swift */,
@@ -150,6 +155,7 @@
 				62197B1828178DC100BE74BD /* UsersBarCollectionViewCell.swift */,
 				62197B1C2817AA5900BE74BD /* FollowsTableViewCell.swift */,
 				62197B1E2817BEBC00BE74BD /* StreamTitleView.swift */,
+				62941A2928192EFF0073E755 /* GiftCollectionViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -159,7 +165,6 @@
 			children = (
 				4BFDDACC27F33AC900771864 /* AppDelegate.swift */,
 				4BFDDACE27F33AC900771864 /* SceneDelegate.swift */,
-				4BFDDAD227F33AC900771864 /* Main.storyboard */,
 				4BFDDADA27F33ACA00771864 /* LaunchScreen.storyboard */,
 			);
 			path = Resources;
@@ -234,6 +239,7 @@
 			isa = PBXGroup;
 			children = (
 				4BFDDB3027F5615B00771864 /* LiveStreamModel.swift */,
+				62941A272818FC950073E755 /* RandomColor.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -346,12 +352,14 @@
 				4BFDDACD27F33AC900771864 /* AppDelegate.swift in Sources */,
 				4B9230242805326E003FBC18 /* ChatPersistenceManager.swift in Sources */,
 				4B923026280567E0003FBC18 /* CustomAlertView.swift in Sources */,
+				62941A2A28192EFF0073E755 /* GiftCollectionViewCell.swift in Sources */,
 				4B4A423227FB303F00A861ED /* SignUpViewController.swift in Sources */,
 				4B922FF52803DAF1003FBC18 /* StreamView.swift in Sources */,
 				4B281FCC27F83DC9007183FC /* APICaller.swift in Sources */,
 				4B281FD627F9C487007183FC /* TagsLabelView.swift in Sources */,
 				4BFDDACF27F33AC900771864 /* SceneDelegate.swift in Sources */,
 				4B32070C27FDE7C6002670E1 /* LoginViewController.swift in Sources */,
+				62941A282818FC950073E755 /* RandomColor.swift in Sources */,
 				4B281FD227F988DE007183FC /* OnlineNumberView.swift in Sources */,
 				4B281FC527F82C11007183FC /* SearchResultsViewController.swift in Sources */,
 			);
@@ -535,7 +543,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "Cruise-Zhang.LiveStreaming";
+				PRODUCT_BUNDLE_IDENTIFIER = "Cruise-Zhang.LiveStream";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -569,7 +577,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "Cruise-Zhang.LiveStreaming";
+				PRODUCT_BUNDLE_IDENTIFIER = "Cruise-Zhang.LiveStream";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;

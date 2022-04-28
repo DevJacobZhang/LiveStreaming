@@ -147,7 +147,7 @@ class SignUpViewController: UIViewController, APICallerDelegateOfCreate {
         var numberOfStr = 0
         var testStr = ""
         if !(account.contains("@")) {
-            return "不符合電子郵件格式"
+            return NSLocalizedString("不符合電子郵件格式", comment: "")
         }
         for index in account.indices {
             let word = String(account[index])
@@ -159,22 +159,22 @@ class SignUpViewController: UIViewController, APICallerDelegateOfCreate {
                     break
                 }
             } else {
-                return "請勿輸入空白"
+                return NSLocalizedString("帳號請勿輸入空白", comment: "")
             }
         }
         if !(numberOfStr <= 20 && numberOfStr >= 4) {
-            return "帳號不符合長度"
+            return NSLocalizedString("帳號不符合長度", comment: "")
         }
         
         // 密碼檢查
         
         if password.contains(" ") {
-            return "密碼請勿含有空白"
+            return NSLocalizedString("密碼請勿含有空白", comment: "")
         }
         
         numberOfStr = password.count
         if !(numberOfStr <= 12 && numberOfStr >= 6) {
-            return "密碼不符合長度"
+            return NSLocalizedString("密碼不符合長度", comment: "")
         }
         
         return nil
