@@ -8,9 +8,15 @@
 import UIKit
 import SwiftUI
 
+protocol StreamTitleViewDelegate: NSObject {
+    func didTapStreamTitleView()
+}
+
 class StreamTitleView: UIView {
     
     private var liveStreamModel: LiveStreamModel?
+    
+    weak var delegate: StreamTitleViewDelegate?
     
     private let headPhotoImageView: UIImageView = {
         let imageView = UIImageView()
@@ -130,6 +136,8 @@ class StreamTitleView: UIView {
         if title != nil {
             self.streamTitle.text = title
         }
-        
+    }
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.delegate?.didTapStreamTitleView()
     }
 }

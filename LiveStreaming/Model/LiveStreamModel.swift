@@ -33,6 +33,7 @@ struct LiveStreamModel: Codable {
     let online_num: Int?
     let stream_title: String?
     let tags: String?
+    let streamer_id: Int?
 }
 
 //MARK: - For Chat Receive

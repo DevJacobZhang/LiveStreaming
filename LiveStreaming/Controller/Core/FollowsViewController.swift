@@ -98,7 +98,8 @@ class FollowsViewController: UIViewController, UITableViewDelegate, UITableViewD
         let head_photo = self.follows[indexPath.row].head_photo
         let nickname = self.follows[indexPath.row].nickname
         let stream_title = self.follows[indexPath.row].stream_title
-        let liveStreamModel = LiveStreamModel(testNumber: nil, head_photo: head_photo, nickname: nickname, online_num: nil, stream_title: stream_title, tags: nil)
+        let streamerId = Int(self.follows[indexPath.row].streamer_id)
+        let liveStreamModel = LiveStreamModel(testNumber: nil, head_photo: head_photo, nickname: nickname, online_num: nil, stream_title: stream_title, tags: nil, streamer_id: streamerId)
         vc.configure(liveStreamModel: liveStreamModel)
         self.navigationController?.pushViewController(vc, animated: true)
     }

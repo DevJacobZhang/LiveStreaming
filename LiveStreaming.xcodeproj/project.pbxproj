@@ -50,6 +50,8 @@
 		62941A262817DA240073E755 /* FollowPersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62941A252817DA240073E755 /* FollowPersistenceManager.swift */; };
 		62941A282818FC950073E755 /* RandomColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62941A272818FC950073E755 /* RandomColor.swift */; };
 		62941A2A28192EFF0073E755 /* GiftCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62941A2928192EFF0073E755 /* GiftCollectionViewCell.swift */; };
+		62D1D09A281B92D5001B457F /* StreamerIntroduceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62D1D099281B92D5001B457F /* StreamerIntroduceView.swift */; };
+		62D1D09C281BCE81001B457F /* MinesweeperGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62D1D09B281BCE81001B457F /* MinesweeperGameViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -100,6 +102,8 @@
 		62941A252817DA240073E755 /* FollowPersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowPersistenceManager.swift; sourceTree = "<group>"; };
 		62941A272818FC950073E755 /* RandomColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomColor.swift; sourceTree = "<group>"; };
 		62941A2928192EFF0073E755 /* GiftCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiftCollectionViewCell.swift; sourceTree = "<group>"; };
+		62D1D099281B92D5001B457F /* StreamerIntroduceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamerIntroduceView.swift; sourceTree = "<group>"; };
+		62D1D09B281BCE81001B457F /* MinesweeperGameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinesweeperGameViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,6 +159,7 @@
 				62197B1828178DC100BE74BD /* UsersBarCollectionViewCell.swift */,
 				62197B1C2817AA5900BE74BD /* FollowsTableViewCell.swift */,
 				62197B1E2817BEBC00BE74BD /* StreamTitleView.swift */,
+				62D1D099281B92D5001B457F /* StreamerIntroduceView.swift */,
 				62941A2928192EFF0073E755 /* GiftCollectionViewCell.swift */,
 			);
 			path = Views;
@@ -196,6 +201,7 @@
 			children = (
 				4B281FC627F82C1B007183FC /* General */,
 				4B281FC727F82C29007183FC /* Core */,
+				62D1D09B281BCE81001B457F /* MinesweeperGameViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -346,10 +352,12 @@
 				62197B1B2817A58F00BE74BD /* FollowsViewController.swift in Sources */,
 				62941A262817DA240073E755 /* FollowPersistenceManager.swift in Sources */,
 				4B281FC327F80C63007183FC /* MyCollectionView.swift in Sources */,
+				62D1D09A281B92D5001B457F /* StreamerIntroduceView.swift in Sources */,
 				4BFDDB3127F5615B00771864 /* LiveStreamModel.swift in Sources */,
 				4B92302D28067E60003FBC18 /* ChatLabelTableViewCell.swift in Sources */,
 				62197B1F2817BEBC00BE74BD /* StreamTitleView.swift in Sources */,
 				4BFDDACD27F33AC900771864 /* AppDelegate.swift in Sources */,
+				62D1D09C281BCE81001B457F /* MinesweeperGameViewController.swift in Sources */,
 				4B9230242805326E003FBC18 /* ChatPersistenceManager.swift in Sources */,
 				4B923026280567E0003FBC18 /* CustomAlertView.swift in Sources */,
 				62941A2A28192EFF0073E755 /* GiftCollectionViewCell.swift in Sources */,

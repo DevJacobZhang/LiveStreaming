@@ -19,6 +19,7 @@ class ChatRoomViewController: UIViewController, CustomAlertViewDelegate {
     @IBOutlet weak var messageTextField: UITextField!
     @IBOutlet weak var sendMsgButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var gameButton: UIButton!
     
     var giftAry: [String] = ["火車", "飛機", "火箭", "跑車", "罐頭塔", "UFO", "特斯拉", "保時捷", "勞力士"]
     /////////////////////用來設定GiftCollection禮物列的位子以及定位用的
@@ -94,6 +95,18 @@ class ChatRoomViewController: UIViewController, CustomAlertViewDelegate {
         view.alpha = 0.4
         return view
     }()
+    private let backViewForIntroduceView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .black
+        view.alpha = 0.0
+        return view
+        
+    }()
+    private let streamerIntroduceView: StreamerIntroduceView = {
+        let view = StreamerIntroduceView()
+        
+        return view
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -121,7 +134,9 @@ class ChatRoomViewController: UIViewController, CustomAlertViewDelegate {
         self.streamView.addSubview(messageTextField)
         self.streamView.addSubview(sendMsgButton)
         self.streamView.addSubview(heartButton)
+        self.streamView.addSubview(gameButton)
         self.streamView.addSubview(streamTitleView)
+        streamTitleView.delegate = self
         self.streamView.addSubview(realcountLabel)
         
         self.view.addSubview(usersCollectionView)
@@ -135,7 +150,9 @@ class ChatRoomViewController: UIViewController, CustomAlertViewDelegate {
         originCollectionViewX = self.view.frame.width //11 pro = 375.0
         openStatusX = self.view.frame.width - 80.0
         
+        streamerIntroduceView.delegate = self
         self.view.addSubview(arrowView)
+//        self.backViewForIntroduceView.addSubview(streamerIntroduceView)
         
         ChatPersistenceManager.shard.delegate = self
         /*------------------------------// start webSocket//-----------------------------------*/
@@ -173,8 +190,16 @@ class ChatRoomViewController: UIViewController, CustomAlertViewDelegate {
         usersCollectionView.frame = CGRect(x: self.view.frame.width / 2 + 50.0, y: 40, width: width, height: 40)
         giftCollectionView.frame = CGRect(x: originCollectionViewX, y: 200, width: 80, height: 350)
         arrowView.frame.size = CGSize(width: 40, height: 40)
-        arrowView.frame.origin = CGPoint(x: self.view.bounds.width - 60, y: self.view.bounds.height / 2 - 30)
+        arrowView.frame.origin = CGPoint(x: self.view.bounds.width - arrowView.frame.width, y: self.view.bounds.height / 2 - arrowView.frame.height / 2)
         
+        self.backViewForIntroduceView.frame = CGRect(x: 0, y: 0, width: self.view.bounds.width, height: self.view.bounds.height)
+        streamerIntroduceView.frame = CGRect(x: 0, y: self.view.frame.height, width: self.view.frame.width, height: self.view.frame.height)
+        
+        gameButton.layer.cornerRadius = gameButton.frame.width / 2
+        gameButton.layer.masksToBounds = true
+        
+        
+
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
@@ -254,21 +279,30 @@ class ChatRoomViewController: UIViewController, CustomAlertViewDelegate {
         
         if sender.state == .ended { //放開手指時，如果x邊左就代表開啟禮物列，太右邊就關掉
             if self.giftCollectionView.frame.origin.x <= (self.originCollectionViewX - 40) {
-                UIViewPropertyAnimator.runningPropertyAnimator(withDuration: 0.5, delay: 0) {
-                    self.giftCollectionView.frame.origin.x = self.originCollectionViewX - self.giftCollectionView.frame.width
-                    self.arrowView.frame.origin.x = self.giftCollectionView.frame.origin.x - 40.0
-                    self.giftOpenStatus = true
-                    self.arrowView.alpha = 0.0
-                    
-                }
+                self.giftAndArrowAnimation(status: true)
             } else {
-                UIViewPropertyAnimator.runningPropertyAnimator(withDuration: 0.5, delay: 0) {
-                    self.giftCollectionView.frame.origin.x = self.originCollectionViewX
-                    self.arrowView.frame.origin.x = self.originCollectionViewX - 40.0
-                    self.giftOpenStatus = false
-                    self.arrowView.alpha = 0.4
-                    
-                }
+                self.giftAndArrowAnimation(status: false)
+
+            }
+        }
+    }
+    
+    private func giftAndArrowAnimation(status: Bool) {
+        if status { //
+            UIViewPropertyAnimator.runningPropertyAnimator(withDuration: 0.4, delay: 0) {
+                self.giftCollectionView.frame.origin.x = self.originCollectionViewX - self.giftCollectionView.frame.width
+                self.arrowView.frame.origin.x = self.giftCollectionView.frame.origin.x - 40.0
+                self.giftOpenStatus = true
+                self.arrowView.alpha = 0.0
+                
+            }
+        } else {
+            UIViewPropertyAnimator.runningPropertyAnimator(withDuration: 0.4, delay: 0) {
+                self.giftCollectionView.frame.origin.x = self.originCollectionViewX
+                self.arrowView.frame.origin.x = self.originCollectionViewX - 40.0
+                self.giftOpenStatus = false
+                self.arrowView.alpha = 0.4
+                
             }
         }
     }
@@ -278,6 +312,7 @@ class ChatRoomViewController: UIViewController, CustomAlertViewDelegate {
     public func configure(liveStreamModel: LiveStreamModel?) {
         if liveStreamModel != nil {
             self.streamTitleView.configure(liveStreamModel: liveStreamModel!)
+            self.streamerIntroduceView.configure(headphoto: nil, liveStreamModel: liveStreamModel!)
         }
     }
     
@@ -488,6 +523,36 @@ extension ChatRoomViewController: UICollectionViewDelegate, UICollectionViewData
     }
 }
 
+//MARK: - 使用者點擊左上角資訊收到通知，在這裡掛上主播資訊的View
+extension ChatRoomViewController: StreamTitleViewDelegate {
+    func didTapStreamTitleView() {
+        view.endEditing(true) //點擊螢幕收鍵盤
+        print("在這裡生成主播資訊吧")
+        self.view.addSubview(backViewForIntroduceView)
+        self.view.addSubview(streamerIntroduceView)
+        UIViewPropertyAnimator.runningPropertyAnimator(withDuration: 0.6, delay: 0) {
+            self.backViewForIntroduceView.alpha = 0.4
+            self.streamerIntroduceView.frame.origin.y = 0
+            
+        }
+    }
+}
+
+//MARK: - 使用者點擊主播簡介欄位的Done按鈕
+extension ChatRoomViewController: StreamerIntroduceViewDelegate {
+    func didTapDoneButton() {
+        UIViewPropertyAnimator.runningPropertyAnimator(withDuration: 0.6, delay: 0) {
+            self.backViewForIntroduceView.alpha = 0
+            self.streamerIntroduceView.frame.origin.y = self.view.frame.height
+        } completion: { _ in
+            self.backViewForIntroduceView.removeFromSuperview()
+            self.streamerIntroduceView.removeFromSuperview()
+        }
+
+        
+    }
+}
+
 //MARK: - addKeyboardObserver when Hide & Show , change view.Y軸
 
 extension ChatRoomViewController {
@@ -512,6 +577,10 @@ extension ChatRoomViewController {
            self.sendMsgButton.frame.origin.y -= keyboardHeight
            self.heartButton.frame.origin.y -= keyboardHeight
        }
+       if giftOpenStatus {
+           self.giftAndArrowAnimation(status: false)
+       }
+       self.arrowView.alpha = 0.0
    }
    
    @objc func keyboardWillHide(notification: Notification) {
@@ -529,6 +598,7 @@ extension ChatRoomViewController {
            self.sendMsgButton.frame.origin.y += keyboardHeight
            self.heartButton.frame.origin.y += keyboardHeight
        }
+       self.arrowView.alpha = 0.4
    }
    
    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
