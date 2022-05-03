@@ -19,7 +19,6 @@ class StreamerIntroduceView: UIView {
     private let backView: UIView = {
         let view = UIView()
         view.backgroundColor = .clear
-//        view.alpha = 0.5
         
         return view
     }()
@@ -152,12 +151,6 @@ class StreamerIntroduceView: UIView {
     
     @objc private func doneAction() {
         self.delegate?.didTapDoneButton()
-//        UIViewPropertyAnimator.runningPropertyAnimator(withDuration: 1, delay: 0) {
-//            self.photoImg.frame.origin.y += self.frame.height
-//            self.infoView.frame.origin.y += self.frame.height
-//            self.doneButton.frame.origin.y += self.frame.height + self.doneButton.frame.height
-//            self.backView.alpha = 0
-//        }
     }
     
     private func initViewFrame() {

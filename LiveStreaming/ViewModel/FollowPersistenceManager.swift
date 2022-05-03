@@ -29,7 +29,7 @@ class DataPersistenceManager {
         item.head_photo = model.head_photo
         item.nickname = model.nickname
         item.stream_title = model.stream_title
-        item.streamer_id = Int16(model.streamer_id!)
+        item.streamer_id = Int32(model.streamer_id!)
         do {
             try context.save()
             completion(.success(()))

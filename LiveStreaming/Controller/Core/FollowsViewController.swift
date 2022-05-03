@@ -83,6 +83,7 @@ class FollowsViewController: UIViewController, UITableViewDelegate, UITableViewD
                 switch result {
                 case .success():
                     print("Deleted from the database")
+                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "DeleteFollow"), object: nil)
                 case .failure(let error):
                     print(error.localizedDescription)
                 }

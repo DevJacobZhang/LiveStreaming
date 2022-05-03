@@ -4,7 +4,7 @@
         <attribute name="head_photo" optional="YES" attributeType="String"/>
         <attribute name="nickname" optional="YES" attributeType="String"/>
         <attribute name="stream_title" optional="YES" attributeType="String"/>
-        <attribute name="streamer_id" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="streamer_id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
     </entity>
     <elements>
         <element name="TitleItem" positionX="-63" positionY="-18" width="128" height="89"/>
